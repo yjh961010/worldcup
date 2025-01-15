@@ -64,11 +64,9 @@
 
         <div class="row">
             <div class="col">
-                <!-- 이미지 경로 수정: "/images/"가 중복되지 않도록 처리 -->
                 <img th:src="@{${image1}}" alt="이미지1"> <!-- image1 변수를 Thymeleaf로 바인딩 -->
             </div>
             <div class="col">
-                <!-- 이미지 경로 수정: "/images/"가 중복되지 않도록 처리 -->
                 <img th:src="@{${image2}}" alt="이미지2"> <!-- image2 변수를 Thymeleaf로 바인딩 -->
             </div>
         </div>
@@ -78,7 +76,6 @@
             <button type="submit" name="winner" value="image2">두 번째 이미지 승리</button>
         </form>
     </div>
-
     <script type="text/javascript" th:inline="javascript">
         var roundAnnouncement = [[${roundAnnouncement}]];  // 서버에서 전달된 변수를 JavaScript로 바인딩
         
