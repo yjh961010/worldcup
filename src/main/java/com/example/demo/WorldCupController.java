@@ -27,8 +27,10 @@ public class WorldCupController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, HttpSession session) {
+    	
         model.addAttribute("worldcups", List.of("월드컵1", "월드컵2", "월드컵3"));
+        session.invalidate(); 
         return "index";
     }
 
