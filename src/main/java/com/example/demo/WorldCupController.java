@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -14,11 +13,9 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"round", "roundImages"})
 public class WorldCupController {
 
     private List<String> images = new ArrayList<>();
-    private int round = 1; // 현재 진행 중인 라운드 번호
 
     // 생성자에서 이미지 파일 경로 추가
     public WorldCupController() {
@@ -81,7 +78,7 @@ public class WorldCupController {
 
         // 라운드 번호 증가
         int round = (int) session.getAttribute("round");
-        round++;
+        round++; // 라운드 증가
 
         session.setAttribute("round", round); // 라운드 번호 업데이트
         session.setAttribute("roundImages", roundImages); // 이미지 목록 업데이트
