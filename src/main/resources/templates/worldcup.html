@@ -6,6 +6,7 @@
     <title>월드컵 진행</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+        /* 스타일 정의 */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -59,15 +60,17 @@
     </style>
 </head>
 <body>
-    <div class="container text-center">
-        <h1>월드컵 - <span th:text="${round}">round</span> 라운드</h1> <!-- round 변수를 Thymeleaf로 바인딩 -->
+    <div class="container">
+        <h2>월드컵 - <span th:text="${round}">round</span> 라운드</h2>
 
         <div class="row">
             <div class="col">
-                <img th:src="@{${image1}}" alt="이미지1"> <!-- image1 변수를 Thymeleaf로 바인딩 -->
+                <!-- 이미지 경로 수정 -->
+                <img th:src="@{${image1}}" alt="이미지1"> <!-- image1 변수는 이미지의 경로를 포함한 전체 경로 -->
             </div>
             <div class="col">
-                <img th:src="@{${image2}}" alt="이미지2"> <!-- image2 변수를 Thymeleaf로 바인딩 -->
+                <!-- 이미지 경로 수정 -->
+                <img th:src="@{${image2}}" alt="이미지2"> <!-- image2 변수도 마찬가지 -->
             </div>
         </div>
 
@@ -76,13 +79,14 @@
             <button type="submit" name="winner" value="image2">두 번째 이미지 승리</button>
         </form>
     </div>
-    <script type="text/javascript" th:inline="javascript">
-        var roundAnnouncement = [[${roundAnnouncement}]];  // 서버에서 전달된 변수를 JavaScript로 바인딩
-        
-        // roundAnnouncement 값에 따라 알림 표시
+
+    <script th:inline="javascript">
+        var roundAnnouncement = /*[[${roundAnnouncement}]]*/ ''; // 라운드 알림 메시지
+
+        // roundAnnouncement 값이 존재하면 알림을 표시
         if (roundAnnouncement) {
             Swal.fire({
-                title: roundAnnouncement,  // 예: "16강 시작!", "8강 시작!" 등
+                title: roundAnnouncement,
                 icon: 'info',
                 confirmButtonText: '확인'
             });

@@ -28,9 +28,8 @@ public class WorldCupController {
 
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
-    	
         model.addAttribute("worldcups", List.of("월드컵1", "월드컵2", "월드컵3"));
-        session.invalidate(); 
+        session.invalidate();  // 세션 초기화 (새로 시작)
         return "index";
     }
 
@@ -95,10 +94,21 @@ public class WorldCupController {
 
     @GetMapping("/winner")
     public String winner(Model model, HttpSession session) {
+        // 세션에서 roundImages를 가져옵니다.
         List<String> roundImages = (List<String>) session.getAttribute("roundImages");
-        model.addAttribute("winner", roundImages.get(0)); // 최종 승자 이미지
+
+        // roundImages가 null이거나 비어 있는 경우, 리디렉션하여 월드컵 진행 페이지로 돌아가게 합니다.
+        if (roundImages == null || roundImages.isEmpty()) {
+            return "redirect:/worldcup"; // 월드컵 진행 페이지로 리디렉션
+        }
+
+        // roundImages가 정상적으로 존재하는 경우, 최종 승자 이미지를 모델에 추가합니다.
+        model.addAttribute("winner", roundImages.get(0)); // 첫 번째 이미지를 승자로 설정
+
+        // "winner.html" 페이지를 반환하여 승자를 표시
         return "winner";
     }
+
 
     // 라운드 알림 메시지
     private String getRoundAnnouncement(int remainingImages) {
