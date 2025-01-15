@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>월드컵 진행</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .col {
+            width: 45%;
+            text-align: center;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        form {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>월드컵 - <span th:text="${round}">round</span> 라운드</h1> <!-- round 변수를 Thymeleaf로 바인딩 -->
+
+        <div class="row">
+            <div class="col">
+                <!-- 이미지 경로 수정: "/images/"가 중복되지 않도록 처리 -->
+                <img th:src="@{${image1}}" alt="이미지1"> <!-- image1 변수를 Thymeleaf로 바인딩 -->
+            </div>
+            <div class="col">
+                <!-- 이미지 경로 수정: "/images/"가 중복되지 않도록 처리 -->
+                <img th:src="@{${image2}}" alt="이미지2"> <!-- image2 변수를 Thymeleaf로 바인딩 -->
+            </div>
+        </div>
+
+        <form action="/select" method="post">
+            <button type="submit" name="winner" value="image1">첫 번째 이미지 승리</button>
+            <button type="submit" name="winner" value="image2">두 번째 이미지 승리</button>
+        </form>
+    </div>
+
+    <script type="text/javascript" th:inline="javascript">
+        var roundAnnouncement = [[${roundAnnouncement}]];  // 서버에서 전달된 변수를 JavaScript로 바인딩
+        
+        // roundAnnouncement 값에 따라 알림 표시
+        if (roundAnnouncement) {
+            Swal.fire({
+                title: roundAnnouncement,  // 예: "16강 시작!", "8강 시작!" 등
+                icon: 'info',
+                confirmButtonText: '확인'
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이상형 월드컵</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .list-group {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .list-group-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #34495e;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .list-group-item:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .list-group-item:active {
+            background-color: #e1e1e1;
+        }
+
+        /* 모바일 화면 크기 조정 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>이상형 월드컵</h1>
+        <ul class="list-group">
+            <li class="list-group-item" onclick="location.href='/worldcup'">최애의 영기</li>
+            <li class="list-group-item" onclick="location.href='/worldcup?worldcupName=월드컵2'">개발중</li>
+            <li class="list-group-item" onclick="location.href='/worldcup?worldcupName=월드컵3'">개발중</li>
+        </ul>
+    </div>
+</body>
+</html>
